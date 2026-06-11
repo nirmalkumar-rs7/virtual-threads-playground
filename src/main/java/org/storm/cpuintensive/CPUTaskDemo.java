@@ -13,19 +13,20 @@ public class CPUTaskDemo {
 
     static void main() {
         logger.info("Tasks Count: {}", TASK_COUNT);
+        int input = 45;
         for (int i = 0; i < 3; i++) {
-            long timeTaken = CommonUtil.timer(() -> runTasks(Thread.ofVirtual()));
+            long timeTaken = CommonUtil.timer(() -> runTasks(Thread.ofVirtual(), input));
             logger.info("Total Time Taken With Virtual Threads: {}", timeTaken);
-            timeTaken = CommonUtil.timer(() -> runTasks(Thread.ofPlatform()));
+            timeTaken = CommonUtil.timer(() -> runTasks(Thread.ofPlatform(), input));
             logger.info("Total Time Taken With Platform: {}", timeTaken);
         }
     }
 
-    private static void runTasks(Thread.Builder builder) {
+    private static void runTasks(Thread.Builder builder, int input) {
         CountDownLatch latch = new CountDownLatch(TASK_COUNT);
         for (int i = 1; i <= TASK_COUNT; i++) {
             builder.start(() -> {
-                Task.cpuIntensive(45);
+                Task.cpuIntensive(input);
                 latch.countDown();
             });
         }
