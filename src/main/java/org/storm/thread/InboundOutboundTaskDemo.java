@@ -12,8 +12,8 @@ public class InboundOutboundTaskDemo {
     private static final int MAX_PLATFORM_THREADS = 10;
     public static final int MAX_VIRTUAL_THREADS = 20;
 
-    public static void main(String[] args) {
-        platformThreadDemo4();
+    static void main() {
+        platformDaemonThreadDemo();
         virtualThreadDemo();
     }
 
@@ -25,7 +25,7 @@ public class InboundOutboundTaskDemo {
         }
     }
 
-    private static void platformThreadDemo2() {
+    private static void platformThreadDemoWithBuilder() {
         for (int i = 1; i <= MAX_PLATFORM_THREADS; i++) {
             int j = i;
             Thread thread = Thread.ofPlatform().unstarted(() -> Task.ioIntensiveTask(j));
@@ -33,7 +33,7 @@ public class InboundOutboundTaskDemo {
         }
     }
 
-    private static void platformThreadDemo3() {
+    private static void platformThreadDemoWithName() {
         Thread.Builder builder = Thread.ofPlatform().name("nirmal-", 1);
         for (int i = 1; i <= MAX_PLATFORM_THREADS; i++) {
             int j = i;
@@ -42,7 +42,7 @@ public class InboundOutboundTaskDemo {
         }
     }
 
-    private static void platformThreadDemo4() {
+    private static void platformDaemonThreadDemo() {
         CountDownLatch latch = new CountDownLatch(MAX_PLATFORM_THREADS);
         Thread.Builder builder = Thread.ofPlatform().daemon().name("daemon-nirmal-", 1);
         for (int i = 1; i <= MAX_PLATFORM_THREADS; i++) {
