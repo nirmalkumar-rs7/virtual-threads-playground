@@ -9,12 +9,12 @@ public class InboundOutboundTaskDemo {
 
     public static final Logger log = LoggerFactory.getLogger(InboundOutboundTaskDemo.class);
 
-    private static final int MAX_PLATFORM_THREADS = 10;
-    public static final int MAX_VIRTUAL_THREADS = 20;
+    private static final int MAX_PLATFORM_THREADS = 100000;
+    public static final int MAX_VIRTUAL_THREADS = 1_000_000;
 
     static void main() {
-        platformDaemonThreadDemo();
-        virtualThreadDemo();
+//        platformThreadDemoWithName();
+//        virtualThreadDemo();
     }
 
     private static void platformThreadDemo() {

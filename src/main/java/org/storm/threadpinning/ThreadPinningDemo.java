@@ -6,9 +6,9 @@ import org.storm.CommonUtil;
 
 import java.time.Duration;
 
-public class ThreadPinning {
+public class ThreadPinningDemo {
 
-    private static final Logger  logger = LoggerFactory.getLogger(ThreadPinning.class);
+    private static final Logger  logger = LoggerFactory.getLogger(ThreadPinningDemo.class);
 
     static {
         System.setProperty("jdk.tracePinnedThreads", "full");
@@ -44,7 +44,7 @@ public class ThreadPinning {
     }
 
     private static void fetchUserProfile() {
-        CommonUtil.sleep(Duration.ofSeconds(11));
+        CommonUtil.sleep(Duration.ofSeconds(1));
     }
 
 }
